@@ -69,100 +69,100 @@ const PerformanceMetrics = () => {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3 md:space-y-4">
       {/* Creative Contact Section */}
-      <div className="bg-gradient-to-r from-green-900/50 to-blue-900/50 p-4 rounded-lg border border-green-500/30">
+      <div className="bg-gradient-to-r from-green-900/50 to-blue-900/50 p-3 md:p-4 rounded-lg border border-green-500/30">
         <div className="flex items-center gap-2 mb-3">
-          <span className="text-green-400">📱</span>
-          <h3 className="text-green-400 font-bold text-sm">CONNECT WITH LANKA</h3>
+          <span className="text-green-400 text-base md:text-lg">📱</span>
+          <h3 className="text-green-400 font-bold text-xs md:text-sm">CONNECT WITH LANKA</h3>
           <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse ml-auto"></div>
         </div>
-        
-        <div className="space-y-3 text-xs">
-          <div className="bg-gray-800/50 p-3 rounded">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-gray-400">STATUS</span>
-              <span className="text-green-400">🟢 Available for Opportunities</span>
+
+        <div className="space-y-2 md:space-y-3 text-xs">
+          <div className="bg-gray-800/50 p-2 md:p-3 rounded">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2 gap-1">
+              <span className="text-gray-400 text-xs">STATUS</span>
+              <span className="text-green-400 text-xs">🟢 Available for Opportunities</span>
             </div>
-            <div className="text-green-300">Open to full-time roles & collaborations</div>
+            <div className="text-green-300 text-xs">Open to full-time roles & collaborations</div>
           </div>
-          
+
           <div className="grid grid-cols-2 gap-2">
-            <a 
+            <a
               href="mailto:lankamallikarjuna108@gmail.com"
-              className="bg-red-800/30 hover:bg-red-800/50 p-2 rounded text-center transition-colors border border-red-600/30"
+              className="bg-red-800/30 hover:bg-red-800/50 p-3 md:p-2 rounded text-center transition-colors border border-red-600/30 min-h-[60px] md:min-h-0 flex flex-col items-center justify-center"
             >
-              <div className="text-red-400">📧</div>
-              <div className="text-red-300 text-xs">Email</div>
+              <div className="text-red-400 text-lg md:text-base">📧</div>
+              <div className="text-red-300 text-xs mt-1">Email</div>
             </a>
-            <a 
+            <a
               href="https://linkedin.com/in/lankamallikarjuna"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-blue-800/30 hover:bg-blue-800/50 p-2 rounded text-center transition-colors border border-blue-600/30"
+              className="bg-blue-800/30 hover:bg-blue-800/50 p-3 md:p-2 rounded text-center transition-colors border border-blue-600/30 min-h-[60px] md:min-h-0 flex flex-col items-center justify-center"
             >
-              <div className="text-blue-400">💼</div>
-              <div className="text-blue-300 text-xs">LinkedIn</div>
+              <div className="text-blue-400 text-lg md:text-base">💼</div>
+              <div className="text-blue-300 text-xs mt-1">LinkedIn</div>
             </a>
-            <a 
+            <a
               href="https://github.com/mallikarjuna291"
-              target="_blank" 
+              target="_blank"
               rel="noopener noreferrer"
-              className="bg-purple-800/30 hover:bg-purple-800/50 p-2 rounded text-center transition-colors border border-purple-600/30"
+              className="bg-purple-800/30 hover:bg-purple-800/50 p-3 md:p-2 rounded text-center transition-colors border border-purple-600/30 min-h-[60px] md:min-h-0 flex flex-col items-center justify-center"
             >
-              <div className="text-purple-400">💻</div>
-              <div className="text-purple-300 text-xs">GitHub</div>
+              <div className="text-purple-400 text-lg md:text-base">💻</div>
+              <div className="text-purple-300 text-xs mt-1">GitHub</div>
             </a>
-            <a 
+            <a
               href="/MallikarjunaCV.pdf"
               download="MallikarjunaCV.pdf"
-              className="bg-yellow-800/30 hover:bg-yellow-800/50 p-2 rounded text-center transition-colors border border-yellow-600/30"
+              className="bg-yellow-800/30 hover:bg-yellow-800/50 p-3 md:p-2 rounded text-center transition-colors border border-yellow-600/30 min-h-[60px] md:min-h-0 flex flex-col items-center justify-center"
             >
-              <div className="text-yellow-400">📄</div>
-              <div className="text-yellow-300 text-xs">Resume</div>
+              <div className="text-yellow-400 text-lg md:text-base">📄</div>
+              <div className="text-yellow-300 text-xs mt-1">Resume</div>
             </a>
           </div>
-          
+
         </div>
       </div>
 
       {/* Lanka's Impact Metrics */}
-      <div className="bg-gradient-to-r from-blue-900/50 to-purple-900/50 p-4 rounded-lg border border-blue-500/30">
+      <div className="bg-gradient-to-r from-blue-900/50 to-purple-900/50 p-3 md:p-4 rounded-lg border border-blue-500/30">
         <div className="text-blue-300 text-xs mb-3 flex items-center gap-2">
           <span>🏆</span>
           <span className="font-semibold">LANKA'S PRODUCTION IMPACT</span>
         </div>
-        <div className="grid grid-cols-2 gap-3">
-          <div className="bg-gray-800/50 p-3 rounded text-center">
-            <div className="text-2xl font-bold text-green-400">60%</div>
+        <div className="grid grid-cols-2 gap-2 md:gap-3">
+          <div className="bg-gray-800/50 p-2 md:p-3 rounded text-center">
+            <div className="text-xl md:text-2xl font-bold text-green-400">60%</div>
             <div className="text-xs text-gray-300">Onboarding Boost</div>
-            <div className="text-xs text-gray-500">Partner Portal</div>
+            <div className="text-xs text-gray-500 hidden md:block">Partner Portal</div>
           </div>
-          <div className="bg-gray-800/50 p-3 rounded text-center">
-            <div className="text-2xl font-bold text-blue-400">58%</div>
+          <div className="bg-gray-800/50 p-2 md:p-3 rounded text-center">
+            <div className="text-xl md:text-2xl font-bold text-blue-400">58%</div>
             <div className="text-xs text-gray-300">Build Time Cut</div>
-            <div className="text-xs text-gray-500">Webpack→Vite</div>
+            <div className="text-xs text-gray-500 hidden md:block">Webpack→Vite</div>
           </div>
-          <div className="bg-gray-800/50 p-3 rounded text-center">
-            <div className="text-2xl font-bold text-purple-400">95%</div>
+          <div className="bg-gray-800/50 p-2 md:p-3 rounded text-center">
+            <div className="text-xl md:text-2xl font-bold text-purple-400">95%</div>
             <div className="text-xs text-gray-300">Delivery Rate</div>
-            <div className="text-xs text-gray-500">15+ Projects</div>
+            <div className="text-xs text-gray-500 hidden md:block">15+ Projects</div>
           </div>
-          <div className="bg-gray-800/50 p-3 rounded text-center">
-            <div className="text-2xl font-bold text-orange-400">40%</div>
+          <div className="bg-gray-800/50 p-2 md:p-3 rounded text-center">
+            <div className="text-xl md:text-2xl font-bold text-orange-400">40%</div>
             <div className="text-xs text-gray-300">Code Reduction</div>
-            <div className="text-xs text-gray-500">UI Framework</div>
+            <div className="text-xs text-gray-500 hidden md:block">UI Framework</div>
           </div>
         </div>
       </div>
 
       {/* System Status */}
       <div className="bg-gray-800 p-3 rounded-lg border border-gray-600 text-xs font-mono">
-        <div className="flex items-center justify-between mb-2">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2 gap-1">
           <span className="text-gray-400">SYSTEM STATUS</span>
-          <span className="text-green-400">ALL SYSTEMS OPERATIONAL</span>
+          <span className="text-green-400 text-xs">ALL SYSTEMS OPERATIONAL</span>
         </div>
-        <div className="space-y-1 text-gray-500">
+        <div className="space-y-1 text-gray-500 text-xs">
           <div className="flex justify-between">
             <span>Uptime</span>
             <span className="text-green-400">{formatUptime(metrics.uptime)}</span>
