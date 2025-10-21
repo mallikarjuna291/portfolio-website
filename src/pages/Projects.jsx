@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import ProjectCard from '../components/ProjectCard'
 import { projects } from '../data/projects'
 
@@ -154,9 +155,9 @@ const Projects = () => {
                 </svg>
                 View More on GitHub
               </a>
-              <a href="/contact" className="btn-secondary">
+              <Link to="/contact" className="btn-secondary">
                 Let's Work Together
-              </a>
+              </Link>
             </div>
           </div>
         </div>

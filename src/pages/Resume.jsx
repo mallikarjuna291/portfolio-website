@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 const Resume = () => {
   const highlights = [
     'Software Engineer at Syscloud Technologies with 3+ years of experience',
@@ -75,9 +77,9 @@ const Resume = () => {
                 </svg>
                 Download Resume (PDF)
               </a>
-              <a href="/contact" className="btn-secondary">
+              <Link to="/contact" className="btn-secondary">
                 Let's Connect
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -138,9 +140,9 @@ const Resume = () => {
                 Let's discuss how my skills and experience can contribute to your team.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="/contact" className="btn-primary">
+                <Link to="/contact" className="btn-primary">
                   Get in Touch
-                </a>
+                </Link>
                 <a 
                   href="/MallikarjunaCV.pdf" 
                   download="MallikarjunaCV.pdf"

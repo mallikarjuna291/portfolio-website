@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 
 const IDEHeader = ({ onTerminalOpen, onFileExplorerOpen, onMetricsToggle }) => {
   const [currentTime, setCurrentTime] = useState(new Date())
@@ -129,9 +129,9 @@ const IDEHeader = ({ onTerminalOpen, onFileExplorerOpen, onMetricsToggle }) => {
       <div className="bg-gray-800 px-4">
         <div className="flex items-center gap-1 overflow-x-auto">
           {tabs.map(tab => (
-            <a
+            <Link
               key={tab.path}
-              href={tab.path}
+              to={tab.path}
               className={`flex items-center gap-2 px-4 py-2 text-sm border-b-2 transition-colors ${
                 location.pathname === tab.path
                   ? 'border-blue-500 text-blue-400 bg-gray-700'
@@ -143,7 +143,7 @@ const IDEHeader = ({ onTerminalOpen, onFileExplorerOpen, onMetricsToggle }) => {
               {location.pathname === tab.path && (
                 <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
               )}
-            </a>
+            </Link>
           ))}
         </div>
       </div>
