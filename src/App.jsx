@@ -53,11 +53,15 @@ function App() {
     return () => document.removeEventListener('keydown', handleKeyboard)
   }, [showMetrics])
 
-  // Auto-hide metrics on mobile
+  // Auto-hide metrics on mobile, but keep sidebar functionality
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
-        setShowMetrics(false)
+        setShowMetrics(true) // Keep metrics enabled for mobile drawer
+        setIsMobileMenuOpen(false) // Close mobile menu on resize
+      } else {
+        setShowMetrics(true) // Show on desktop
+        setIsMobileMenuOpen(false) // Reset mobile menu state
       }
     }
     handleResize()
@@ -105,18 +109,19 @@ function App() {
         onMetricsToggle={() => setShowMetrics(!showMetrics)}
       />
 
-      {/* Mobile Menu Toggle Button */}
+      {/* Mobile Menu Toggle Button - Always visible on mobile */}
       <button
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        className="md:hidden fixed bottom-4 left-4 z-50 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg transition-all"
+        className="md:hidden fixed bottom-4 left-4 z-50 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white p-4 rounded-full shadow-lg transition-all"
         aria-label="Toggle mobile menu"
+        style={{ touchAction: 'manipulation' }}
       >
         {isMobileMenuOpen ? (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         ) : (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-16 6h16" />
           </svg>
         )}
@@ -127,14 +132,13 @@ function App() {
         {/* Performance Metrics Sidebar - Desktop & Mobile Drawer */}
         <div
           className={`
-            ${showMetrics ? 'block' : 'hidden'}
             fixed md:relative inset-y-0 left-0 z-40
             w-80 md:w-80
             border-r border-gray-700 bg-gray-900
             p-4 overflow-y-auto
             transform transition-transform duration-300 ease-in-out
             ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
-            md:translate-x-0
+            ${showMetrics ? 'md:translate-x-0' : 'md:hidden'}
             top-14 md:top-auto
           `}
         >
@@ -169,29 +173,6 @@ function App() {
               <span className="text-yellow-400">📄</span> Download Resume
             </a>
           </div>
-
-          {/* AI Assistant Panel */}
-          <div className="mt-6 bg-gray-800 rounded-lg p-4 border border-gray-700">
-            <div className="flex items-center gap-2 mb-3">
-              <span className="text-purple-400">🤖</span>
-              <span className="text-sm font-semibold">AI Assistant</span>
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse ml-auto"></div>
-            </div>
-            <div className="text-xs text-gray-400 space-y-1">
-              <div>💡 "Lanka excels at performance optimization"</div>
-              <div>🚀 "58% build time improvement with Vite migration"</div>
-              <div>⚡ "95% on-time delivery rate"</div>
-            </div>
-            <button
-              onClick={() => {
-                setIsTerminalOpen(true)
-                setIsMobileMenuOpen(false)
-              }}
-              className="w-full mt-3 px-2 py-1 text-xs bg-purple-700 hover:bg-purple-600 rounded transition-colors"
-            >
-              Ask AI about Lanka
-            </button>
-          </div>
         </div>
 
         {/* Overlay for mobile menu */}
@@ -199,6 +180,8 @@ function App() {
           <div
             className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-30 top-14"
             onClick={() => setIsMobileMenuOpen(false)}
+            onTouchEnd={() => setIsMobileMenuOpen(false)}
+            style={{ touchAction: 'manipulation' }}
           />
         )}
 
