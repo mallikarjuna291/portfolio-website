@@ -5,8 +5,8 @@ import { ThemeProvider } from './context/ThemeContext'
 import App from './App.jsx'
 import './index.css'
 
-// Use base path for GitHub Pages in production
-const basename = import.meta.env.PROD ? '/portfolio-website' : '/'
+// Use '/' for custom domain (portfolio.mallikarjunatech.com)
+const basename = '/'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
