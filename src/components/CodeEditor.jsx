@@ -272,7 +272,7 @@ const CodeEditor = ({ children }) => {
         {/* System Info Header */}
         <div className="mb-4 text-gray-500">
           <div>Lanka's Portfolio System v1.0</div>
-          <div>Copyright (c) 2023 Lanka Mallikarjuna. All rights reserved.</div>
+          <div>Copyright (c) 2025 Lanka Mallikarjuna. All rights reserved.</div>
           <div className="mt-2">───────────────────────────────────────────────────────</div>
         </div>
 
