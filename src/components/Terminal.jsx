@@ -303,60 +303,60 @@ const Terminal = ({ isVisible, onClose }) => {
   if (!isVisible) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50" onClick={onClose}>
-      <div 
-        className="bg-gray-900 border border-gray-700 rounded-lg w-full max-w-4xl h-96 flex flex-col"
+    <div className="fixed inset-0 bg-black bg-opacity-75 dark:bg-black dark:bg-opacity-75 flex items-center justify-center z-50" onClick={onClose}>
+      <div
+        className="bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg w-full max-w-4xl h-96 flex flex-col"
         onClick={e => e.stopPropagation()}
       >
         {/* Terminal Header */}
-        <div className="bg-gray-800 px-4 py-2 border-b border-gray-700 rounded-t-lg flex items-center justify-between">
+        <div className="bg-gray-200 dark:bg-gray-800 px-4 py-2 border-b border-gray-300 dark:border-gray-700 rounded-t-lg flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="flex gap-1">
               <div className="w-3 h-3 bg-red-500 rounded-full cursor-pointer" onClick={onClose}></div>
               <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
               <div className="w-3 h-3 bg-green-500 rounded-full"></div>
             </div>
-            <span className="text-gray-300 text-sm ml-3">Terminal</span>
+            <span className="text-gray-700 dark:text-gray-300 text-sm ml-3">Terminal</span>
           </div>
-          <button 
+          <button
             onClick={onClose}
-            className="text-gray-400 hover:text-white text-sm"
+            className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white text-sm"
           >
             ✕
           </button>
         </div>
 
         {/* Terminal Content */}
-        <div 
+        <div
           ref={terminalRef}
-          className="flex-1 p-4 font-mono text-sm text-green-400 overflow-y-auto bg-black"
+          className="flex-1 p-4 font-mono text-sm text-gray-800 dark:text-green-400 overflow-y-auto bg-white dark:bg-black"
         >
           <div className="space-y-1">
             {history.map((line, index) => (
               <div key={index} className={
-                line.startsWith('$') ? 'text-blue-400' :
-                line.startsWith('❌') ? 'text-red-400' :
-                line.startsWith('✅') ? 'text-green-400' :
-                line.includes('📊') || line.includes('🚀') || line.includes('💼') ? 'text-yellow-400' :
-                'text-green-300'
+                line.startsWith('$') ? 'text-blue-600 dark:text-blue-400' :
+                line.startsWith('❌') ? 'text-red-600 dark:text-red-400' :
+                line.startsWith('✅') ? 'text-green-600 dark:text-green-400' :
+                line.includes('📊') || line.includes('🚀') || line.includes('💼') ? 'text-orange-600 dark:text-yellow-400' :
+                'text-gray-700 dark:text-green-300'
               }>
                 {line}
               </div>
             ))}
-            
+
             {/* Input Line */}
             <div className="flex items-center">
-              <span className="text-blue-400">$ </span>
+              <span className="text-blue-600 dark:text-blue-400">$ </span>
               <input
                 ref={inputRef}
                 type="text"
                 value={currentInput}
                 onChange={(e) => setCurrentInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                className="flex-1 bg-transparent text-green-400 outline-none ml-1"
+                className="flex-1 bg-transparent text-gray-800 dark:text-green-400 outline-none ml-1 placeholder-gray-400 dark:placeholder-gray-500"
                 placeholder="Type a command..."
               />
-              <div className="w-2 h-4 bg-green-400 animate-pulse ml-1"></div>
+              <div className="w-2 h-4 bg-gray-800 dark:bg-green-400 animate-pulse ml-1"></div>
             </div>
           </div>
         </div>

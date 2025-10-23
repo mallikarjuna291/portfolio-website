@@ -5,6 +5,11 @@ import CodeEditor from './components/CodeEditor'
 import Terminal from './components/Terminal'
 import FileExplorer from './components/FileExplorer'
 import PerformanceMetrics from './components/PerformanceMetrics'
+import ErrorBoundary from './components/ErrorBoundary'
+import OnboardingTour from './components/OnboardingTour'
+import KeyboardHints from './components/KeyboardHints'
+import BackToTop from './components/BackToTop'
+import LoadingBar from './components/LoadingBar'
 import Home from './pages/Home'
 import About from './pages/About'
 import Projects from './pages/Projects'
@@ -71,28 +76,28 @@ function App() {
 
   if (!bootComplete) {
     return (
-      <div className="min-h-screen bg-gray-900 text-green-400 font-mono flex items-center justify-center px-4">
+      <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-green-600 dark:text-green-400 font-mono flex items-center justify-center px-4 transition-colors duration-300">
         <div className="text-center space-y-4 max-w-md">
-          <div className="text-xl md:text-2xl mb-8">🚀 Lanka's Development Environment</div>
+          <div className="text-xl md:text-2xl mb-8 text-gray-800 dark:text-gray-200">🚀 Lanka's Development Environment</div>
           <div className="space-y-2 text-xs md:text-sm">
             <div className="flex items-center gap-3 justify-center">
-              <div className="animate-spin w-4 h-4 border border-green-400 border-t-transparent rounded-full"></div>
-              <span>Loading portfolio modules...</span>
+              <div className="animate-spin w-4 h-4 border border-green-600 dark:border-green-400 border-t-transparent rounded-full"></div>
+              <span className="text-gray-700 dark:text-gray-300">Loading portfolio modules...</span>
             </div>
             <div className="flex items-center gap-3 justify-center">
-              <div className="animate-pulse w-4 h-4 bg-green-400 rounded-full"></div>
-              <span>Initializing React environment...</span>
+              <div className="animate-pulse w-4 h-4 bg-green-600 dark:bg-green-400 rounded-full"></div>
+              <span className="text-gray-700 dark:text-gray-300">Initializing React environment...</span>
             </div>
             <div className="flex items-center gap-3 justify-center">
-              <div className="animate-bounce w-4 h-4 bg-blue-400 rounded-full"></div>
-              <span>Connecting to Syscloud systems...</span>
+              <div className="animate-bounce w-4 h-4 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
+              <span className="text-gray-700 dark:text-gray-300">Connecting to Syscloud systems...</span>
             </div>
             <div className="flex items-center gap-3 justify-center">
-              <div className="w-4 h-4 bg-yellow-400 rounded-full"></div>
-              <span>Ready! Starting portfolio...</span>
+              <div className="w-4 h-4 bg-yellow-600 dark:bg-yellow-400 rounded-full"></div>
+              <span className="text-gray-700 dark:text-gray-300">Ready! Starting portfolio...</span>
             </div>
           </div>
-          <div className="mt-8 text-xs text-gray-500 hidden md:block">
+          <div className="mt-8 text-xs text-gray-600 dark:text-gray-500 hidden md:block">
             Press Ctrl+` for terminal, Ctrl+B for file explorer, Ctrl+J for metrics
           </div>
         </div>
@@ -101,20 +106,34 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-100 flex flex-col font-sans">
-      {/* IDE Header */}
-      <IDEHeader
-        onTerminalOpen={() => setIsTerminalOpen(true)}
-        onFileExplorerOpen={() => setIsFileExplorerOpen(true)}
-        onMetricsToggle={() => setShowMetrics(!showMetrics)}
-      />
+    <ErrorBoundary>
+      <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col font-sans transition-colors duration-300">
+        {/* Page transition loading bar */}
+        <LoadingBar />
 
-      {/* Mobile Menu Toggle Button - Always visible on mobile */}
+        {/* Skip to main content link for accessibility */}
+        <a href="#main-content" className="skip-to-content">
+          Skip to main content
+        </a>
+
+        {/* Onboarding Tour for first-time visitors */}
+        <OnboardingTour />
+
+        {/* IDE Header */}
+        <IDEHeader
+          onTerminalOpen={() => setIsTerminalOpen(true)}
+          onFileExplorerOpen={() => setIsFileExplorerOpen(true)}
+          onMetricsToggle={() => setShowMetrics(!showMetrics)}
+        />
+
+      {/* Mobile Menu Toggle Button - Improved position */}
       <button
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        className="md:hidden fixed bottom-4 left-4 z-50 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white p-4 rounded-full shadow-lg transition-all"
+        className={`md:hidden fixed bottom-20 right-4 z-50 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white p-4 rounded-full shadow-2xl transition-all duration-300 transform ${
+          isMobileMenuOpen ? 'rotate-90 scale-110' : 'scale-100'
+        }`}
         aria-label="Toggle mobile menu"
-        style={{ touchAction: 'manipulation' }}
+        aria-expanded={isMobileMenuOpen}
       >
         {isMobileMenuOpen ? (
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -125,6 +144,11 @@ function App() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-16 6h16" />
           </svg>
         )}
+
+        {/* Pulse indicator when menu is available */}
+        {!isMobileMenuOpen && (
+          <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></span>
+        )}
       </button>
 
       {/* Main IDE Layout */}
@@ -134,7 +158,7 @@ function App() {
           className={`
             fixed md:relative inset-y-0 left-0 z-40
             w-80 md:w-80
-            border-r border-gray-700 bg-gray-900
+            border-r border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-900
             p-4 overflow-y-auto
             transform transition-transform duration-300 ease-in-out
             ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
@@ -146,31 +170,31 @@ function App() {
 
           {/* Quick Actions */}
           <div className="mt-6 space-y-2">
-            <div className="text-xs text-gray-400 font-mono mb-3">QUICK ACTIONS</div>
+            <div className="text-xs text-gray-600 dark:text-gray-400 font-mono mb-3">QUICK ACTIONS</div>
             <button
               onClick={() => {
                 setIsTerminalOpen(true)
                 setIsMobileMenuOpen(false)
               }}
-              className="w-full text-left px-3 py-2 text-sm bg-gray-800 hover:bg-gray-700 rounded border border-gray-600 transition-colors"
+              className="w-full text-left px-3 py-2 text-sm bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 rounded border border-gray-300 dark:border-gray-600 transition-colors text-gray-800 dark:text-gray-100"
             >
-              <span className="text-green-400">$</span> Open Terminal
+              <span className="text-green-600 dark:text-green-400">$</span> Open Terminal
             </button>
             <button
               onClick={() => {
                 setIsFileExplorerOpen(true)
                 setIsMobileMenuOpen(false)
               }}
-              className="w-full text-left px-3 py-2 text-sm bg-gray-800 hover:bg-gray-700 rounded border border-gray-600 transition-colors"
+              className="w-full text-left px-3 py-2 text-sm bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 rounded border border-gray-300 dark:border-gray-600 transition-colors text-gray-800 dark:text-gray-100"
             >
-              <span className="text-blue-400">📁</span> Browse Files
+              <span className="text-blue-600 dark:text-blue-400">📁</span> Browse Files
             </button>
             <a
               href="/MallikarjunaCV.pdf"
               download="MallikarjunaCV.pdf"
-              className="w-full text-left px-3 py-2 text-sm bg-gradient-to-r from-purple-800 to-blue-800 hover:from-purple-700 hover:to-blue-700 rounded border border-purple-600 transition-colors block"
+              className="w-full text-left px-3 py-2 text-sm bg-gradient-to-r from-purple-600 to-blue-600 dark:from-purple-800 dark:to-blue-800 hover:from-purple-700 hover:to-blue-700 dark:hover:from-purple-700 dark:hover:to-blue-700 rounded border border-purple-500 dark:border-purple-600 transition-colors block text-white"
             >
-              <span className="text-yellow-400">📄</span> Download Resume
+              <span className="text-yellow-300 dark:text-yellow-400">📄</span> Download Resume
             </a>
           </div>
         </div>
@@ -186,7 +210,7 @@ function App() {
         )}
 
         {/* Main Content Area */}
-        <div className="flex-1 flex flex-col overflow-auto">
+        <div id="main-content" className="flex-1 flex flex-col overflow-auto">
           <CodeEditor>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -212,11 +236,13 @@ function App() {
         onClose={() => setIsFileExplorerOpen(false)}
       />
 
-      {/* Hidden shortcuts hint - Desktop only */}
-      <div className="hidden md:block fixed bottom-4 right-4 text-xs text-gray-500 font-mono bg-gray-800 px-3 py-2 rounded-lg border border-gray-700 opacity-50 hover:opacity-100 transition-opacity">
-        Ctrl+` Terminal • Ctrl+B Files • Ctrl+J Metrics
-      </div>
+      {/* Keyboard shortcuts hint - Dismissible */}
+      <KeyboardHints />
+
+      {/* Back to top button */}
+      <BackToTop />
     </div>
+    </ErrorBoundary>
   )
 }
 
