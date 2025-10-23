@@ -256,21 +256,21 @@ const CodeEditor = ({ children }) => {
   }, [location.pathname])
 
   return (
-    <div className="h-full bg-black text-green-400 font-mono overflow-hidden">
+    <div className="h-full bg-white dark:bg-black text-gray-800 dark:text-green-400 font-mono overflow-hidden">
       {/* Terminal Header */}
-      <div className="bg-gray-900 border-b border-gray-700 px-4 py-2 flex items-center gap-2">
+      <div className="bg-gray-100 dark:bg-gray-900 border-b border-gray-300 dark:border-gray-700 px-4 py-2 flex items-center gap-2">
         <div className="flex gap-1">
           <div className="w-3 h-3 bg-red-500 rounded-full"></div>
           <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
           <div className="w-3 h-3 bg-green-500 rounded-full"></div>
         </div>
-        <span className="text-gray-300 text-sm ml-3">Terminal - Lanka's Portfolio</span>
+        <span className="text-gray-700 dark:text-gray-300 text-sm ml-3">Terminal - Lanka's Portfolio</span>
       </div>
 
       {/* Terminal Content */}
       <div className="p-6 h-full overflow-auto">
         {/* System Info Header */}
-        <div className="mb-4 text-gray-500">
+        <div className="mb-4 text-gray-600 dark:text-gray-500">
           <div>Lanka's Portfolio System v1.0</div>
           <div>Copyright (c) 2023 Lanka Mallikarjuna. All rights reserved.</div>
           <div className="mt-2">───────────────────────────────────────────────────────</div>
@@ -280,20 +280,20 @@ const CodeEditor = ({ children }) => {
         <div className="space-y-1 text-sm">
           {terminalLines.map((line, index) => (
             <div key={index} className={`${
-              line && line.startsWith('lanka@portfolio:~$') ? 'text-blue-400' :
-              line && line.startsWith('cat ') ? 'text-blue-400' :
-              line && line.startsWith('ls ') ? 'text-blue-400' :
-              line && line.startsWith('#') ? 'text-yellow-400 font-bold' :
-              line && line.startsWith('##') ? 'text-cyan-400 font-semibold' :
-              line && line.startsWith('###') ? 'text-green-400' :
-              line && line.startsWith('•') ? 'text-green-400' :
-              line && line.startsWith('✓') ? 'text-green-400' :
-              line && line.startsWith('┌') ? 'text-purple-400' :
-              line && line.startsWith('│') ? 'text-purple-400' :
-              line && line.startsWith('└') ? 'text-purple-400' :
-              line && line.includes('drwxr-xr-x') ? 'text-blue-400' :
-              line && line.includes(':') && line.includes('%') ? 'text-yellow-400' :
-              'text-gray-300'
+              line && line.startsWith('lanka@portfolio:~$') ? 'text-blue-600 dark:text-blue-400' :
+              line && line.startsWith('cat ') ? 'text-blue-600 dark:text-blue-400' :
+              line && line.startsWith('ls ') ? 'text-blue-600 dark:text-blue-400' :
+              line && line.startsWith('#') ? 'text-orange-600 dark:text-yellow-400 font-bold' :
+              line && line.startsWith('##') ? 'text-cyan-600 dark:text-cyan-400 font-semibold' :
+              line && line.startsWith('###') ? 'text-green-600 dark:text-green-400' :
+              line && line.startsWith('•') ? 'text-green-600 dark:text-green-400' :
+              line && line.startsWith('✓') ? 'text-green-600 dark:text-green-400' :
+              line && line.startsWith('┌') ? 'text-purple-600 dark:text-purple-400' :
+              line && line.startsWith('│') ? 'text-purple-600 dark:text-purple-400' :
+              line && line.startsWith('└') ? 'text-purple-600 dark:text-purple-400' :
+              line && line.includes('drwxr-xr-x') ? 'text-blue-600 dark:text-blue-400' :
+              line && line.includes(':') && line.includes('%') ? 'text-orange-600 dark:text-yellow-400' :
+              'text-gray-700 dark:text-gray-300'
             }`}>
               {line || ''}
               {index === terminalLines.length - 1 && showCursor && (
@@ -304,8 +304,8 @@ const CodeEditor = ({ children }) => {
         </div>
 
         {/* Status Bar */}
-        <div className="fixed bottom-0 left-0 right-0 bg-gray-900 border-t border-gray-700 p-2 text-xs">
-          <div className="flex items-center justify-between text-gray-400">
+        <div className="fixed bottom-0 left-0 right-0 bg-gray-100 dark:bg-gray-900 border-t border-gray-300 dark:border-gray-700 p-2 text-xs">
+          <div className="flex items-center justify-between text-gray-600 dark:text-gray-400">
             <div className="flex items-center gap-4">
               <span>🟢 Online</span>
               <span>Session: {Math.floor(Date.now() / 1000)}s</span>
